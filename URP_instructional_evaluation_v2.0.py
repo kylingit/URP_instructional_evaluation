@@ -36,7 +36,7 @@ def login(user, password, code):
     data = urllib.parse.urlencode(data).encode('gb2312')
     req = urllib.request.Request(url,data,header)
     response = urllib.request.urlopen(req)
-    html = response.read().decode('gb2312')
+    html = response.read().decode('gb2312', 'ignore')
     i = html.find('URP综合教务系统 - 登录')
     if i > 0:
         flag = 0
@@ -157,7 +157,7 @@ def postPj(br, pr, bm, pm):
     predata = urllib.parse.urlencode(predata).encode(encoding='gb2312')
     prereq = urllib.request.Request(preurl,predata,preheader)
     preresponse = urllib.request.urlopen(prereq)
-    prehtml = preresponse.read().decode('gb2312')
+    prehtml = preresponse.read().decode('gb2312', 'ignore')
     
     pjheader = {}
     pjheader['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
@@ -199,7 +199,7 @@ def postPj(br, pr, bm, pm):
     pjurl = 'http://xxx.edu.cn/jxpgXsAction.do?oper=wjpg'            ##提交评价结果页面
     pjreq = urllib.request.Request(pjurl,data,pjheader)
     pjresponse = urllib.request.urlopen(pjreq)
-    pjhtml = pjresponse.read().decode('gb2312')
+    pjhtml = pjresponse.read().decode('gb2312', 'ignore')
     i = pjhtml.find('评估成功')
     if (i > 0):
         print (pm + ' ' + bm+ ' 评价成功!')
